@@ -1,0 +1,30 @@
+---
+
+- set_fact: conf_file={{ beats_conf_dir }}/{{ beat }}.yml
+- set_fact: beat={{ beat }}
+
+- name: Check if Filebeat package is installed
+  yum:
+    list: installed
+  register: yum_packages
+
+- set_fact: 
+    package_status: "{{yum_packages | json_query(jsonquery) | length }}"
+  vars:
+    jsonquery: "results[?name=='filebeat']"
+
+- name: install Packege {{beat}} if not exist
+  yum:
+    name: "{{beat}}"
+    state: present
+  when: package_status == "0" 
+
+- name: Ensure that Filebeat Endpoint Config Proper
+  command: "grep -i {{logstash_hosts}} {{conf_file}}"
+  register: logstash_config
+  ignore_errors: true
+
+- name: Copy Configuration File for {{ beat }}
+  template: src=beat.yml.j2 dest={{conf_file}} mode=0644 force=yes owner=root group=root
+  notify: restart {{ beat }}
+  when: logstash_config.rc == 1

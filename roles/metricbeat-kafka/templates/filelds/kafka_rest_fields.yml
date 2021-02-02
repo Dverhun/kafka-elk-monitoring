@@ -1,0 +1,521 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- key: kafka-rest
+  title: "kafka-rest"
+  release: beta
+  description: Kafka-rest metrics from kafka-rest Distributed JMX via jolokia
+  fields:
+    - name: kafkaconnect
+      type: group
+      description: kafka-rest metrics from kafka-rest Distributed JMX via jolokia
+      release: beta
+      fields:
+        - name: mbean
+          description: Mbean that this event is related to
+          type: keyword
+        - name: connections_active
+          description: Total number of active TCP connections.
+          type: long
+        - name: connections_opened_rate
+          description: The average rate per second of opened TCP connections.
+          type: long
+        - name: connections_closed_rate
+          description: The average rate per second of closed TCP connections.
+          type: long
+        - name: brokers_list_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: brokers_list_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: brokers_list_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: brokers_list_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: brokers_list_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: brokers_list_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: brokers_list_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: brokers_list_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: brokers_list_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: brokers_list_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: brokers_list_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: consumer_commit_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: consumer_commit_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: consumer_commit_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: consumer_commit_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: consumer_commit_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: consumer_commit_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: consumer_commit_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: consumer_commit_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: consumer_commit_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: consumer_commit_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: consumer_commit_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: consumer_create_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: consumer_create_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: consumer_create_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: consumer_create_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: consumer_create_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: consumer_create_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: consumer_create_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: consumer_create_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: consumer_create_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: consumer_create_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: consumer_create_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: consumer_delete_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: consumer_delete_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: consumer_delete_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: consumer_delete_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: consumer_delete_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: consumer_delete_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: consumer_delete_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: consumer_delete_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: consumer_delete_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: consumer_delete_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: consumer_delete_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: consumer_topic_read_avro_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: consumer_topic_read_avro_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: consumer_topic_read_avro_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: consumer_topic_read_avro_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: consumer_topic_read_avro_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: consumer_topic_read_avro_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: consumer_topic_read_avro_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: consumer_topic_read_avro_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: consumer_topic_read_avro_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: consumer_topic_read_avro_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: consumer_topic_read_avro_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: consumer_topic_read_binary_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: consumer_topic_read_binary_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: consumer_topic_read_binary_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: consumer_topic_read_binary_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: consumer_topic_read_binary_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: consumer_topic_read_binary_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: consumer_topic_read_binary_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: consumer_topic_read_binary_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: consumer_topic_read_binary_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: consumer_topic_read_binary_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: consumer_topic_read_binary_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: partition_get_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: partition_get_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: partition_get_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: partition_get_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: partition_get_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: partition_get_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: partition_get_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: partition_get_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: partition_get_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: partition_get_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: partition_get_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: partition_produce_avro_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: partition_produce_avro_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: partition_produce_avro_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: partition_produce_avro_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: partition_produce_avro_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: partition_produce_avro_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: partition_produce_avro_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: partition_produce_avro_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: partition_produce_avro_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: partition_produce_avro_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: partition_produce_avro_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: partition_produce_json_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: partition_produce_json_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: partition_produce_json_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: partition_produce_json_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: partition_produce_json_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: partition_produce_json_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: partition_produce_json_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: partition_produce_json_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: partition_produce_json_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: partition_produce_json_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: partition_produce_json_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: partition_produce_binary_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: partition_produce_binary_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: partition_produce_binary_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: partition_produce_binary_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: partition_produce_binary_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: partition_produce_binary_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: partition_produce_binary_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: partition_produce_binary_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: partition_produce_binary_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: partition_produce_binary_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: partition_produce_binary_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: partitions_list_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: partitions_list_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: partitions_list_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: partitions_list_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: partitions_list_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: partitions_list_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: partitions_list_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: partitions_list_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: partitions_list_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: partitions_list_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: partitions_list_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: topic_get_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: topic_get_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: topic_get_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: topic_get_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: topic_get_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: topic_get_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: topic_get_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: topic_get_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: topic_get_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: topic_get_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: topic_get_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: topic_produce_avro_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: topic_produce_avro_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: topic_produce_avro_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: topic_produce_avro_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: topic_produce_avro_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: topic_produce_avro_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: topic_produce_avro_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: topic_produce_avro_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: topic_produce_avro_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: topic_produce_avro_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: topic_produce_avro_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: topic_produce_binary_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: topic_produce_binary_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: topic_produce_binary_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: topic_produce_binary_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: topic_produce_binary_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: topic_produce_binary_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: topic_produce_binary_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: topic_produce_binary_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: topic_produce_binary_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: topic_produce_binary_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: topic_produce_binary_response_size_max
+          description: The maximum response size in bytes
+          type: long
+        - name: topics_list_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: long
+        - name: topics_list_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: long
+        - name: topics_list_request_latency_avg
+          description: The average request latency in ms
+          type: long
+        - name: topics_list_request_latency_max
+          description: The maximum request latency in ms
+          type: long
+        - name: topics_list_request_rate
+          description: The average number of HTTP requests per second.
+          type: long
+        - name: topics_list_request_size_avg
+          description: The average request size in bytes
+          type: long
+        - name: topics_list_request_size_max
+          description: The maximum request size in bytes
+          type: long
+        - name: topics_list_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: long
+        - name: topics_list_response_rate
+          description: The average number of HTTP responses per second.
+          type: long
+        - name: topics_list_response_size_avg
+          description: The average response size in bytes
+          type: long
+        - name: topics_list_response_size_max
+          description: The maximum response size in bytes
+          type: long

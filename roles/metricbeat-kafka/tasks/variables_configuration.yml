@@ -1,0 +1,36 @@
+#Configuration file for beats
+- name: Set name for Metricbeat manifest and fileds | kafka_connect 
+  set_fact:
+    metricbeat_manifes: "kafka_connect_manifest.yml"
+    metricbeat_fields: "kafka_connect_fields.yml"
+  when: ( 'connect' in inventory_hostname )
+
+- name: Set name for Metricbeat manifest | kafka_rest
+  set_fact:
+    metricbeat_manifes: "kafka_rest_manifest.yml"
+    metricbeat_fields: "kafka_rest_fields.yml"
+  when: ( 'rest' in inventory_hostname )
+
+- name: Set name for Metricbeat manifest | ksql_manifest
+  set_fact:
+    metricbeat_manifes: "ksql_manifest.yml"
+    metricbeat_fields: "ksql_fields.yml"
+  when: ( 'ksql' in inventory_hostname )
+
+- name: Set name for Metricbeat manifest | schemaregistry
+  set_fact:
+    metricbeat_manifes: "schemaregistry_manifest.yml"
+    metricbeat_fields: "schemaregistry_fields.yml"
+  when: ( 'registry' in inventory_hostname )
+
+- name: Set name for Metricbeat manifest | zookeeper
+  set_fact:
+    metricbeat_manifes: "zookeeper.yml"
+#    metricbeat_fields: "zookeeper.yml"
+  when: ( 'zookeeper' in inventory_hostname )
+  
+- name: Set name for Broker  | kafka
+  set_fact:
+    metricbeat_manifes: "kafka.yml"
+#    metricbeat_fields: "kafka.yml"
+  when: ( 'broker' in inventory_hostname )

@@ -1,0 +1,36 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: zookeeper
+  metricsets:
+    - mntr
+    - server
+  period: 180s
+  hosts: ["localhost:2181"]
+
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['zookeeper']}}"]
+  namespace: "zookeeper"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+    - mbean: 'org.apache.ZooKeeperService:name0=ReplicatedServer_id*,name1=*,name2=*'
+      attributes:
+        - attr: MinRequestLatency
+          field: MinRequestLatency
+        - attr: AvgRequestLatency
+          field: AvgRequestLatency
+        - attr: MaxRequestLatency
+          field: MaxRequestLatency
+        - attr: OutstandingRequests
+          field: OutstandingRequests
+        - attr: NumAliveConnections
+          field: NumAliveConnections
+    - mbean: 'org.apache.ZooKeeperService:name0=ReplicatedServer_id*,name1=replica*,name2=*,name3=InMemoryDataTree'
+      attribures:
+        - attr: NodeCount
+          field: WatchCount
+        - attr: WatchCount
+          field: WatchCount

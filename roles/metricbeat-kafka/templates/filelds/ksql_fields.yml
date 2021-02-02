@@ -1,0 +1,50 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- key: kafka-ksql
+  title: "kafka-ksql"
+  release: beta
+  description: KSQL JMX metrics via jolokia
+  fields:
+    - name: kafka-ksql
+      type: group
+      description: KSQL JMX metrics via jolokia
+      release: beta
+      fields:
+        - name: mbean
+          description: Mbean that this event is related to
+          type: keyword
+        - name: bytes_consumed_total
+          description: Number of bytes consumed across all queries.
+          type: long
+        - name: error_rate
+          description: Number of messages that have been consumed but not processed across all queries.
+          type: long
+        - name: messages_consumed_avg
+          description: Average number of messages consumed by a query per second.
+          type: long
+        - name: messages_consumed_per_sec
+          description: Number of messages consumed per second across all queries.
+          type: long
+        - name: messages_consumed_min
+          description: Number of messages consumed per second for the query with the fewest messages consumed per second.
+          type: long
+        - name: messages_consumed_max
+          description: Number of messages consumed per second for the query with the most messages consumed per second.
+          type: long
+        - name: messages_consumed_total
+          description: Number of messages consumed across all queries.
+          type: long
+        - name: messages_produced_per_sec
+          description: Number of messages produced per second across all queries.
+          type: long
+        - name: num_persistent_queries
+          description: Number of persistent queries that are currently executing.
+          type: long
+        - name: num_active_queries
+          description: Number of queries that are actively processing messages.
+          type: long
+        - name: num_idle_queries
+          description: Number of queries with no messages available to process.
+          type: long

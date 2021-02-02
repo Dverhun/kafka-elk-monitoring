@@ -1,0 +1,50 @@
+---
+
+
+- name: Include Var Config playbook
+  include_tasks: "{{ item }}"
+  loop:
+    - ./variables_configuration.yml
+   - ./packages_preinstall.yml
+
+- name: Create directories  
+  file:
+    path: "{{bets_fileds_dir}}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Copy General File for {{ beat }}
+  template: 
+    src: metricbeat.yml.j2
+    dest: "{{conf_file}}" 
+    mode: 0644
+    force: yes
+    owner: root
+    group: root
+
+- name: Copy Base metribeat modules configs (system.yml and {{metricbeat_manifes}} )
+  template:
+    src: "templates/manifest/{{ item }}"
+    dest: "{{modules_dir}}/{{ item }}" 
+    mode: 0644
+    owner: root
+    group: root
+  loop:
+    - "system.yml"
+    - "kafka.yml"
+    - '{{ metricbeat_manifes }}'
+
+- name: Copy Conluent components fields config ({{metricbeat_fields}})
+  template:
+    src: "templates/filelds/{{ item }}"
+    dest: "{{bets_fileds_dir}}/{{ item }}" 
+    mode: 0644
+    owner: root
+    group: root
+  loop:
+    - '{{ metricbeat_fields }}'
+  notify: restart {{ beat }}
+
+

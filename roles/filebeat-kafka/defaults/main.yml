@@ -1,0 +1,6 @@
+---
+beat: "filebeat"
+daemon_args: ""
+beats_pid_dir: "/var/run"
+beats_conf_dir: "/etc/{{beat}}"
+

@@ -1,0 +1,36 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['kafka-ksql']}}"]
+  namespace: "kafka-ksql"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+    - mbean: 'io.confluent.ksql.metrics:type=ksql-engine-query-stats'
+      attributes:
+        - attr: _confluent-ksql-default_bytes-consumed-total
+          field: bytes_consumed_total
+        - attr: _confluent-ksql-default_error-rate
+          field: error_rate
+        - attr: _confluent-ksql-default_messages-consumed-avg
+          field: messages_consumed_avg
+        - attr: _confluent-ksql-default_messages-consumed-per-sec
+          field: messages_consumed_per_sec
+        - attr: _confluent-ksql-default_messages-consumed-min
+          field: messages_consumed_min
+        - attr: _confluent-ksql-default_messages-consumed-max
+          field: messages_consumed_max
+        - attr: _confluent-ksql-default_messages-consumed-total
+          field: messages_consumed_total
+        - attr: _confluent-ksql-default_messages-produced-per-sec
+          field: messages_produced_per_sec
+        - attr: _confluent-ksql-default_num-persistent-queries
+          field: num_persistent_queries
+        - attr: _confluent-ksql-default_num-active-queries
+          field: num_active_queries
+        - attr: _confluent-ksql-default_num-idle-queries
+          field: num_idle_queries
+            

@@ -1,0 +1,15 @@
+---
+- hosts: 
+    - dev_kafka
+  gather_facts: no
+  become: true
+  become_method: sudo
+  become_user: root
+  vars_prompt:
+    - name: install_beat_name
+      prompt: "Enter Coollector name [filebeat | metricbeat ]: "
+      private: no
+
+  roles: 
+    - { role: filebeat-kafka,       when:  '"filebeat" in install_beat_name' } 
+    - { role: metricbeat-kafka,     when:  '"metricbeat" in install_beat_name' }

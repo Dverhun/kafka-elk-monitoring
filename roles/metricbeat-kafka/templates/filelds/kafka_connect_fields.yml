@@ -1,0 +1,233 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- key: kafkaconnect
+  title: "kafkaconnect"
+  release: beta
+  description: Kafka Connect metrics from Connect Distributed JMX via jolokia
+  fields:
+    - name: kafkaconnect
+      type: group
+      description: Kafka Connect metrics from Connect Distributed JMX via jolokia
+      release: beta
+      fields:
+        - name: mbean
+          description: Mbean that this event is related to
+          type: keyword
+        - name: connector_count 
+          description: The number of connectors run in this worker.
+          type: long
+        - name: connector_startup_attempts_total
+          description: The total number of connector startups that this worker has attempted.
+          type: long
+        - name: connector_startup_failure_percentage
+          description: The average percentage of this worker's connectors starts that failed.
+          type: float
+        - name: connector_startup_failure_total
+          description: The total number of connector starts that failed.
+          type: long
+        - name: connector_startup_success_percentage 
+          description: The average percentage of this worker's connectors starts that succeeded.
+          type: float
+        - name: connector_startup_success_total
+          description: The total number of connector starts that succeeded.
+          type: long
+        - name: task_count
+          description: The number of tasks run in this worker.
+          type: long
+        - name: task_startup_attempts_total
+          description: The total number of task startups that this worker has attempted.
+          type: long
+        - name: task_startup_failure_percentage 
+          description: The average percentage of this worker's tasks starts that failed.
+          type: float
+        - name: task_startup_failure_total
+          description: The total number of task starts that failed.
+          type: long
+        - name: task_startup_success_percentage
+          description: The average percentage of this worker's tasks starts that succeeded.
+          type: float
+        - name: task_startup_success_total
+          description: The total number of task starts that succeeded.
+          type: long
+        - name: connector_destroyed_task_count
+          description: The number of destroyed tasks of the connector on the worker.
+          type: long
+        - name: connector_failed_task_count
+          description: The number of failed tasks of the connector on the worker.
+          type: long
+        - name: connector_paused_task_count
+          description: The number of paused tasks of the connector on the worker.
+          type: long
+        - name: connector_running_task_count
+          description: The number of running tasks of the connector on the worker.
+          type: long
+        - name: connector_total_task_count
+          description: The number of tasks of the connector on the worker.
+          type: long
+        - name: connector_unassigned_task_count
+          description: The number of unassigned tasks of the connector on the worker.
+          type: long
+        - name: completed_rebalances_total
+          description: The total number of rebalances completed by this worker.
+          type: long
+        - name: connect_protocol
+          description: The Connect protocol used by this cluster
+          type: keyword
+        - name: epoch
+          description: The epoch or generation number of this worker.
+          type: float
+        - name: leader_name
+          description: The name of the group leader.
+          type: keyword
+        - name: rebalance_avg_time_ms
+          description: The average time in milliseconds spent by this worker to rebalance.
+          type: long
+        - name: rebalance_max_time_ms
+          description: The maximum time in milliseconds spent by this worker to rebalance.
+          type: long
+        - name: rebalancing
+          description: Whether this worker is currently rebalancing.
+          type: long
+        - name: time_since_last_rebalance_ms
+          description: The time in milliseconds since this worker completed the most recent rebalance.
+          type: long
+        - name: connector_class
+          description: The name of the connector class.
+          type: keyword
+        - name: connector_type
+          description: The type of the connector. One of 'source' or 'sink'.
+          type: keyword
+        - name: connector_version
+          description: The version of the connector class, as reported by the connector.
+          type: keyword
+        - name: status
+          description: The status of the connector. One of 'unassigned', 'running', 'paused', 'failed', or 'destroyed'.
+          type: keyword
+        - name: batch_size_avg
+          description: The average size of the batches processed by the connector.
+          type: float
+        - name: batch_size_max
+          description: The maximum size of the batches processed by the connector.
+          type: float
+        - name: offset_commit_avg_time_ms
+          description: The average time in milliseconds taken by this task to commit offsets.
+          type: long
+        - name: offset_commit_failure_percentage
+          description: The average percentage of this task's offset commit attempts that failed.
+          type: float
+        - name: offset_commit_max_time_ms
+          description: The maximum time in milliseconds taken by this task to commit offsets.
+          type: long
+        - name: offset_commit_success_percentage
+          description: The average percentage of this task's offset commit attempts that succeeded.
+          type: float
+        - name: pause_ratio
+          description: The fraction of time this task has spent in the pause state.
+          type: float
+        - name: running_ratio
+          description: The fraction of time this task has spent in the running state.
+          type: float
+        - name: status
+          description: The status of the connector task. One of 'unassigned', 'running', 'paused', 'failed', or 'destroyed'.
+          type: keyword
+        - name: offset_commit_completion_rate
+          description: The average per-second number of offset commit completions that were completed successfully.
+          type: float
+        - name: offset_commit_completion_total
+          description: The total number of offset commit completions that were completed successfully.
+          type: long
+        - name: offset_commit_seq_no
+          description: The current sequence number for offset commits.
+          type: long
+        - name: offset_commit_skip_rate
+          description: The average per-second number of offset commit completions that were received too late and skipped/ignored.
+          type: float
+        - name: offset_commit_skip_total
+          description: The total number of offset commit completions that were received too late and skipped/ignored.
+          type: float
+        - name: partition_count
+          description: The number of topic partitions assigned to this task belonging to the named sink connector in this worker.
+          type: long
+        - name: put_batch_avg_time_ms
+          description: The average time taken by this task to put a batch of sinks records.
+          type: long
+        - name: put_batch_max_time_ms
+          description: The maximum time taken by this task to put a batch of sinks records.
+          type: long
+        - name: sink_record_active_count
+          description: The number of records that have been read from Kafka but not yet completely committed/flushed/acknowledged by the sink task.
+          type: long
+        - name: sink_record_active_count_avg
+          description: The average number of records that have been read from Kafka but not yet completely committed/flushed/acknowledged by the sink task.
+          type: long
+        - name: sink_record_active_count_max
+          description: The maximum number of records that have been read from Kafka but not yet completely committed/flushed/acknowledged by the sink task.
+          type: long
+        - name: sink_record_lag_max
+          description: The maximum lag in terms of number of records that the sink task is behind the consumer's position for any topic partitions.
+          type: long
+        - name: sink_record_read_rate
+          description: The average per-second number of records read from Kafka for this task belonging to the named sink connector in this worker. This is before transformations are applied.
+          type: float
+        - name: sink_record_read_total
+          description: The total number of records read from Kafka by this task belonging to the named sink connector in this worker, since the task was last restarted.
+          type: long
+        - name: sink_record_send_rate
+          description: The average per-second number of records output from the transformations and sent/put to this task belonging to the named sink connector in this worker. This is after transformations are applied and excludes any records filtered out by the transformations.
+          type: float
+        - name: sink_record_send_total
+          description: The total number of records output from the transformations and sent/put to this task belonging to the named sink connector in this worker, since the task was last restarted.
+          type: long
+        - name: poll_batch_avg_time_ms
+          description: The average time in milliseconds taken by this task to poll for a batch of source records.
+          type: long
+        - name: poll_batch_max_time_ms
+          description: The maximum time in milliseconds taken by this task to poll for a batch of source records.
+          type: long
+        - name: source_record_active_count
+          description: The number of records that have been produced by this task but not yet completely written to Kafka.
+          type: long
+        - name: source_record_active_count_avg
+          description: The average number of records that have been produced by this task but not yet completely written to Kafka.
+          type: long
+        - name: source_record_active_count_max
+          description: The maximum number of records that have been produced by this task but not yet completely written to Kafka.
+          type: long
+        - name: source_record_poll_rate
+          description: The average per-second number of records produced/polled (before transformation) by this task belonging to the named source connector in this worker.
+          type: float
+        - name: source_record_poll_total
+          description: The total number of records produced/polled (before transformation) by this task belonging to the named source connector in this worker.
+          type: long
+        - name: source_record_write_rate
+          description: The average per-second number of records output from the transformations and written to Kafka for this task belonging to the named source connector in this worker. This is after transformations are applied and excludes any records filtered out by the transformations.
+          type: float
+        - name: source_record_write_total
+          description: The number of records output from the transformations and written to Kafka for this task belonging to the named source connector in this worker, since the task was last restarted.
+          type: long
+        - name: deadletterqueue_produce_failures
+          description: The number of failed writes to the dead letter queue.
+          type: long
+        - name: deadletterqueue_produce_requests
+          description: The number of attempted writes to the dead letter queue.
+          type: long
+        - name: last_error_timestamp
+          description: The epoch timestamp when this task last encountered an error.
+          type: long
+        - name: total_errors_logged
+          description: The number of errors that were logged.
+          type: long
+        - name: total_record_errors
+          description: The number of record processing errors in this task.
+          type: long
+        - name: total_record_failures
+          description: The number of record processing failures in this task.
+          type: long
+        - name: total_records_skipped
+          description: The number of records skipped due to errors.
+          type: long
+        - name: total_retries
+          description: The number of operations retried.
+          type: long

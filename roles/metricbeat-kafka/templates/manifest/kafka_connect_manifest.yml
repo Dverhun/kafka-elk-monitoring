@@ -1,0 +1,171 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['kafka-connect']}}"]
+  namespace: "kafka-connect"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+    - mbean: 'kafka.connect:type=connect-worker-metrics'
+      attributes:
+        - attr: connector-count
+          field: connector_count 
+        - attr: connector-startup-attempts-total
+          field: connector_startup_attempts_total
+        - attr: connector-startup-failure-percentage
+          field: connector_startup_failure_percentage
+        - attr: connector-startup-failure-total
+          field: connector_startup_failure_total
+        - attr: connector-startup-success-percentage
+          field: connector_startup_success_percentage
+        - attr: connector-startup-success-total
+          field: connector_startup_success_total
+        - attr: task-count
+          field: task_count
+        - attr: task-startup-attempts-total
+          field: task_startup_attempts_total
+        - attr: task-startup-failure-percentage
+          field: task_startup_failure_percentage
+        - attr: task-startup-failure-total
+          field: task_startup_failure_total
+        - attr: task-startup-success-percentage
+          field: task_startup_success_percentage
+        - attr: task-startup-success-total
+          field: task_startup_success_total
+    - mbean: 'kafka.connect:type=connector-metrics,connector=*'
+      attributes:
+        - attr: connector-destroyed-task-count
+          field: connector_destroyed_task_count
+        - attr: connector-failed-task-count
+          field: connector_failed_task_count
+        - attr: connector-paused-task-count
+          field: connector_paused_task_count
+        - attr: connector-running-task-count
+          field: connector_running_task_count
+        - attr: connector-total-task-count
+          field: connector_total_task_count
+        - attr: connector-unassigned-task-count
+          field: connector_unassigned_task_count
+    - mbean: 'kafka.connect:type=connect-worker-rebalance-metrics'
+      attributes:
+        - attr: completed-rebalances-total
+          field: completed_rebalances_total
+        - attr: connect-protocol
+          field: connect_protocol
+        - attr: epoch
+          field: epoch
+        - attr: leader-name
+          field: leader_name
+        - attr: rebalance-avg-time-ms
+          field: rebalance_avg_time_ms
+        - attr: rebalance-max-time-ms
+          field: rebalance_max_time_ms
+        - attr: rebalancing
+          field: rebalancing
+        - attr: time-since-last-rebalance-ms
+          field: time_since_last_rebalance_ms
+    - mbean: 'kafka.connect:type=connector-metrics,connector=*'
+      attributes:
+        - attr: connector-class
+          field: connector_class
+        - attr: connector-type
+          field: connector_type
+        - attr: connector-version
+          field: connector_version
+        - attr: status
+          field: connector_status
+    - mbean: 'kafka.connect:type=connector-task-metrics,connector=*,task=*'
+      attributes:
+        - attr: batch-size-avg
+          field: batch_size_avg
+        - attr: batch-size-max
+          field: batch_size_max
+        - attr: offset-commit-avg-time-ms
+          field: offset_commit_avg_time_ms
+        - attr: offset-commit-failure-percentage
+          field: offset_commit_failure_percentage
+        - attr: offset-commit-max-time-ms
+          field: offset_commit_max_time_ms
+        - attr: offset-commit-success-percentage
+          field: offset_commit_success_percentage
+        - attr: pause-ratio
+          field: pause_ratio
+        - attr: running-ratio
+          field: running_ratio
+        - attr: status
+          field: task_status
+    - mbean: 'kafka.connect:type=sink-task-metrics,connector=*,task=*'
+      attributes:
+        - attr: offset-commit-completion-rate
+          field: offset_commit_completion_rate
+        - attr: offset-commit-completion-total
+          field: offset_commit_completion_total
+        - attr: offset-commit-seq-no
+          field: offset_commit_seq_no
+        - attr: offset-commit-skip-rate
+          field: offset_commit_skip_rate
+        - attr: offset-commit-skip-total
+          field: offset_commit_skip_total
+        - attr: partition-count
+          field: partition_count
+        - attr: put-batch-avg-time-ms
+          field: put_batch_avg_time_ms
+        - attr: put-batch-max-time-ms
+          field: put_batch_max_time_ms
+        - attr: sink-record-active-count
+          field: sink_record_active_count
+        - attr: sink-record-active-count-avg
+          field: sink_record_active_count_avg
+        - attr: sink-record-active-count-max
+          field: sink_record_active_count_max
+        - attr: sink-record-lag-max
+          field: sink_record_lag_max
+        - attr: sink-record-read-rate
+          field: sink_record_read_rate
+        - attr: sink-record-read-total
+          field: sink_record_read_total
+        - attr: sink-record-send-rate
+          field: sink_record_send_rate
+        - attr: sink-record-send-total
+          field: sink_record_send_total
+    - mbean: 'kafka.connect:type=source-task-metrics,connector=*,task=*'
+      attributes:
+        - attr: poll-batch-avg-time-ms
+          field: poll_batch_avg_time_ms
+        - attr: poll-batch-max-time-ms
+          field: poll_batch_max_time_ms
+        - attr: source-record-active-count
+          field: source_record_active_count
+        - attr: source-record-active-count-avg
+          field: source_record_active_count_avg
+        - attr: source-record-active-count-max
+          field: source_record_active_count_max
+        - attr: source-record-poll-rate
+          field: source_record_poll_rate
+        - attr: source-record-poll-total
+          field: source_record_poll_total
+        - attr: source-record-write-rate
+          field: source_record_write_rate
+        - attr: source-record-write-total
+          field: source_record_write_total
+    - mbean: 'kafka.connect:type=task-error-metrics,connector=*,task=*'
+      attributes:
+        - attr: deadletterqueue-produce-failures
+          field: deadletterqueue_produce_failures
+        - attr: deadletterqueue-produce-requests
+          field: deadletterqueue_produce_requests
+        - attr: last-error-timestamp
+          field: last_error_timestamp
+        - attr: total-errors-logged
+          field: total_errors_logged
+        - attr: total-record-errors
+          field: total_record_errors
+        - attr: total-record-failures
+          field: total_record_failures
+        - attr: total-records-skipped
+          field: total_records_skipped
+        - attr: total-retries
+          field: total_retries

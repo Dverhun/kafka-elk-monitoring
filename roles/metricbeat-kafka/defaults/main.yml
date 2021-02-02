@@ -1,0 +1,20 @@
+---
+# defaults file for beats
+beat: "{{ install_beat_name | lower }}"
+beats_conf_dir: "/etc/{{beat}}"
+conf_file: "{{ beats_conf_dir }}/{{ beat }}.yml"
+modules_dir: "{{ beats_conf_dir }}/modules.d"
+bets_fileds_dir: "{{beats_conf_dir}}/fields"
+beats_pid_dir: "/var/run"
+daemon_args: ""
+jolokia_ports:
+  zookeeper: "7770"
+  kafka-broker: "7771"
+  kafka-schemaregistry: "7772"
+  kafka-connect: "7773"
+  kafka-ksql: "7774"
+  kafka-rest: "7775"
+
+#### Set vars for host which havant spacific metrics 
+metricbeat_manifes: "system.yml"
+metricbeat_fields: "system.yml"

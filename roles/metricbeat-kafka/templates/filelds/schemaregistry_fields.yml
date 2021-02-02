@@ -1,0 +1,293 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- key: kafka-schemaregistry
+  title: "kafka-schemaregistry"
+  release: beta
+  description: kafka-schemaregistry metrics from kafka-schemaregistry Distributed JMX via jolokia
+  fields:
+    - name: kafka-schemaregistry
+      type: group
+      description: kafka-schemaregistry metrics from kafka-schemaregistry Distributed JMX via jolokia
+      release: beta
+      fields:
+        - name: mbean
+          description: Mbean that this event is related to
+          type: keyword
+        - name: connections_active
+          description: Total number of active TCP connections.
+          type: long
+        - name: connections_opened_rate
+          description: The average rate per second of opened TCP connections.
+          type: float
+        - name: connections_closed_rate
+          description: The average rate per second of closed TCP connections.
+          type: float
+        - name: master_slave_role
+          description: The current role of this Schema Registry instance. A value of 1 indicates this instance is the primary, 0 indicates it is a secondary.
+          type: long
+        - name: compatibility_subjects_versions_verify_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: compatibility_subjects_versions_verify_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: compatibility_subjects_versions_verify_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: compatibility_subjects_versions_verify_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: compatibility_subjects_versions_verify_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: compatibility_subjects_versions_verify_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: compatibility_subjects_versions_verify_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: compatibility_subjects_versions_verify_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: compatibility_subjects_versions_verify_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: compatibility_subjects_versions_verify_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: compatibility_subjects_versions_verify_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: schemas_ids_get_schema_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: schemas_ids_get_schema_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: schemas_ids_get_schema_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: schemas_ids_get_schema_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: schemas_ids_get_schema_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: schemas_ids_get_schema_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: schemas_ids_get_schema_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: schemas_ids_get_schema_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: schemas_ids_get_schema_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: schemas_ids_get_schema_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: schemas_ids_get_schema_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_get_schema_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_get_schema_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_get_schema_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_get_schema_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_get_schema_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_get_schema_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_get_schema_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_get_schema_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_get_schema_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_get_schema_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_get_schema_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_list_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_list_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_list_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_list_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_list_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_list_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_list_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_list_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_list_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_list_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_list_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_versions_get_schema_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_versions_get_schema_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_versions_get_schema_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_versions_get_schema_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_versions_get_schema_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_versions_get_schema_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_versions_get_schema_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_versions_get_schema_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_versions_get_schema_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_versions_get_schema_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_versions_get_schema_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_versions_get_schema_only_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_versions_get_schema_only_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_versions_get_schema_only_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_versions_get_schema_only_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_versions_get_schema_only_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_versions_get_schema_only_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_versions_get_schema_only_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_versions_get_schema_only_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_versions_get_schema_only_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_versions_get_schema_only_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_versions_get_schema_only_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_versions_list_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_versions_list_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_versions_list_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_versions_list_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_versions_list_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_versions_list_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_versions_list_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_versions_list_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_versions_list_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_versions_list_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_versions_list_response_size_max
+          description: The maximum response size in bytes
+          type: float
+        - name: subjects_versions_register_request_byte_rate
+          description: Bytes/second of incoming requests
+          type: float
+        - name: subjects_versions_register_request_error_rate
+          description: The average number of requests per second that resulted in HTTP error responses
+          type: float
+        - name: subjects_versions_register_request_latency_avg
+          description: The average request latency in ms
+          type: float
+        - name: subjects_versions_register_request_latency_max
+          description: The maximum request latency in ms
+          type: float
+        - name: subjects_versions_register_request_rate
+          description: The average number of HTTP requests per second.
+          type: float
+        - name: subjects_versions_register_request_size_avg
+          description: The average request size in bytes
+          type: float
+        - name: subjects_versions_register_request_size_max
+          description: The maximum request size in bytes
+          type: float
+        - name: subjects_versions_register_response_byte_rate
+          description: Bytes/second of outgoing responses
+          type: float
+        - name: subjects_versions_register_response_rate
+          description: The average number of HTTP responses per second.
+          type: float
+        - name: subjects_versions_register_response_size_avg
+          description: The average response size in bytes
+          type: float
+        - name: subjects_versions_register_response_size_max
+          description: The maximum response size in bytes
+          type: float

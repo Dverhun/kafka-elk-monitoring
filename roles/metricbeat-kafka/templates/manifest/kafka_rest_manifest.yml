@@ -1,0 +1,351 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['kafka-rest']}}"]
+  namespace: "kafka-rest"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+    - mbean: 'kafka.rest:type=jetty-metrics'
+      attributes:
+        - attr: connections-active
+          field: connections_active
+        - attr: connections-opened-rate
+          field: connections_opened_rate
+        - attr: connections-closed-rate
+          field: connections_closed_rate
+    - mbean: 'kafka.rest:type=jersey-metrics'
+      attributes:
+        - attr: brokers.list.request-byte-rate
+          field: brokers_list_request_byte_rate
+        - attr: brokers.list.request-error-rate
+          field: brokers_list_request_error_rate
+        - attr: brokers.list.request-latency-avg
+          field: brokers_list_request_latency_avg
+        - attr: brokers.list.request-latency-max
+          field: brokers_list_request_latency_max
+        - attr: brokers.list.request-rate
+          field: brokers_list_request_rate
+        - attr: brokers.list.request-size-avg
+          field: brokers_list_request_size_avg
+        - attr: brokers.list.request-size-max
+          field: brokers_list_request_size_max
+        - attr: brokers.list.response-byte-rate
+          field: brokers_list_response_byte_rate
+        - attr: brokers.list.response-rate
+          field: brokers_list_response_rate
+        - attr: brokers.list.response-size-avg
+          field: brokers_list_response_size_avg
+        - attr: brokers.list.response-size-max
+          field: brokers_list_response_size_max
+        - attr: consumer.commit.request-byte-rate
+          field: consumer_commit_request_byte_rate
+        - attr: consumer.commit.request-error-rate
+          field: consumer_commit_request_error_rate
+        - attr: consumer.commit.request-latency-avg
+          field: consumer_commit_request_latency_avg
+        - attr: consumer.commit.request-latency-max
+          field: consumer_commit_request_latency_max
+        - attr: consumer.commit.request-rate
+          field: consumer_commit_request_rate
+        - attr: consumer.commit.request-size-avg
+          field: consumer_commit_request_size_avg
+        - attr: consumer.commit.request-size-max
+          field: consumer_commit_request_size_max
+        - attr: consumer.commit.response-byte-rate
+          field: consumer_commit_response_byte_rate
+        - attr: consumer.commit.response-rate
+          field: consumer_commit_response_rate
+        - attr: consumer.commit.response-size-avg
+          field: consumer_commit_response_size_avg
+        - attr: consumer.commit.response-size-max
+          field: consumer_commit_response_size_max
+        - attr: consumer.create.request-byte-rate
+          field: consumer_create_request_byte_rate
+        - attr: consumer.create.request-error-rate
+          field: consumer_create_request_error_rate
+        - attr: consumer.create.request-latency-avg
+          field: consumer_create_request_latency_avg
+        - attr: consumer.create.request-latency-max
+          field: consumer_create_request_latency_max
+        - attr: consumer.create.request-rate
+          field: consumer_create_request_rate
+        - attr: consumer.create.request-size-avg
+          field: consumer_create_request_size_avg
+        - attr: consumer.create.request-size-max
+          field: consumer_create_request_size_max
+        - attr: consumer.create.response-byte-rate
+          field: consumer_create_response_byte_rate
+        - attr: consumer.create.response-rate
+          field: consumer_create_response_rate
+        - attr: consumer.create.response-size-avg
+          field: consumer_create_response_size_avg
+        - attr: consumer.create.response-size-max
+          field: consumer_create_response_size_max
+        - attr: consumer.delete.request-byte-rate
+          field: consumer_delete_request_byte_rate
+        - attr: consumer.delete.request-error-rate
+          field: consumer_delete_request_error_rate
+        - attr: consumer.delete.request-latency-avg
+          field: consumer_delete_request_latency_avg
+        - attr: consumer.delete.request-latency-max
+          field: consumer_delete_request_latency_max
+        - attr: consumer.delete.request-rate
+          field: consumer_delete_request_rate
+        - attr: consumer.delete.request-size-avg
+          field: consumer_delete_request_size_avg
+        - attr: consumer.delete.request-size-max
+          field: consumer_delete_request_size_max
+        - attr: consumer.delete.response-byte-rate
+          field: consumer_delete_response_byte_rate
+        - attr: consumer.delete.response-rate
+          field: consumer_delete_response_rate
+        - attr: consumer.delete.response-size-avg
+          field: consumer_delete_response_size_avg
+        - attr: consumer.delete.response-size-max
+          field: consumer_delete_response_size_max
+        - attr: consumer.topic.read-avro.request-byte-rate
+          field: consumer_topic_read_avro_request_byte_rate
+        - attr: consumer.topic.read-avro.request-error-rate
+          field: consumer_topic_read_avro_request_error_rate
+        - attr: consumer.topic.read-avro.request-latency-avg
+          field: consumer_topic_read_avro_request_latency_avg
+        - attr: consumer.topic.read-avro.request-latency-max
+          field: consumer_topic_read_avro_request_latency_max
+        - attr: consumer.topic.read-avro.request-rate
+          field: consumer_topic_read_avro_request_rate
+        - attr: consumer.topic.read-avro.request-size-avg
+          field: consumer_topic_read_avro_request_size_avg
+        - attr: consumer.topic.read-avro.request-size-max
+          field: consumer_topic_read_avro_request_size_max
+        - attr: consumer.topic.read-avro.response-byte-rate
+          field: consumer_topic_read_avro_response_byte_rate
+        - attr: consumer.topic.read-avro.response-rate
+          field: consumer_topic_read_avro_response_rate
+        - attr: consumer.topic.read-avro.response-size-avg
+          field: consumer_topic_read_avro_response_size_avg
+        - attr: consumer.topic.read-avro.response-size-max
+          field: consumer_topic_read_avro_response_size_max
+        - attr: consumer.topic.read-binary.request-byte-rate
+          field: consumer_topic_read_binary_request_byte_rate
+        - attr: consumer.topic.read-binary.request-error-rate
+          field: consumer_topic_read_binary_request_error_rate
+        - attr: consumer.topic.read-binary.request-latency-avg
+          field: consumer_topic_read_binary_request_latency_avg
+        - attr: consumer.topic.read-binary.request-latency-max
+          field: consumer_topic_read_binary_request_latency_max
+        - attr: consumer.topic.read-binary.request-rate
+          field: consumer_topic_read_binary_request_rate
+        - attr: consumer.topic.read-binary.request-size-avg
+          field: consumer_topic_read_binary_request_size_avg
+        - attr: consumer.topic.read-binary.request-size-max
+          field: consumer_topic_read_binary_request_size_max
+        - attr: consumer.topic.read-binary.response-byte-rate
+          field: consumer_topic_read_binary_response_byte_rate
+        - attr: consumer.topic.read-binary.response-rate
+          field: consumer_topic_read_binary_response_rate
+        - attr: consumer.topic.read-binary.response-size-avg
+          field: consumer_topic_read_binary_response_size_avg
+        - attr: consumer.topic.read-binary.response-size-max
+          field: consumer_topic_read_binary_response_size_max
+        - attr: partition.get.request-byte-rate
+          field: partition_get_request_byte_rate
+        - attr: partition.get.request-error-rate
+          field: partition_get_request_error_rate
+        - attr: partition.get.request-latency-avg
+          field: partition_get_request_latency_avg
+        - attr: partition.get.request-latency-max
+          field: partition_get_request_latency_max
+        - attr: partition.get.request-rate
+          field: partition_get_request_rate
+        - attr: partition.get.request-size-avg
+          field: partition_get_request_size_avg
+        - attr: partition.get.request-size-max
+          field: partition_get_request_size_max
+        - attr: partition.get.response-byte-rate
+          field: partition_get_response_byte_rate
+        - attr: partition.get.response-rate
+          field: partition_get_response_rate
+        - attr: partition.get.response-size-avg
+          field: partition_get_response_size_avg
+        - attr: partition.get.response-size-max
+          field: partition_get_response_size_max
+        - attr: partition.produce-avro.request-byte-rate
+          field: partition_produce_avro_request_byte_rate
+        - attr: partition.produce-avro.request-error-rate
+          field: partition_produce_avro_request_error_rate
+        - attr: partition.produce-avro.request-latency-avg
+          field: partition_produce_avro_request_latency_avg
+        - attr: partition.produce-avro.request-latency-max
+          field: partition_produce_avro_request_latency_max
+        - attr: partition.produce-avro.request-rate
+          field: partition_produce_avro_request_rate
+        - attr: partition.produce-avro.request-size-avg
+          field: partition_produce_avro_request_size_avg
+        - attr: partition.produce-avro.request-size-max
+          field: partition_produce_avro_request_size_max
+        - attr: partition.produce-avro.response-byte-rate
+          field: partition_produce_avro_response_byte_rate
+        - attr: partition.produce-avro.response-rate
+          field: partition_produce_avro_response_rate
+        - attr: partition.produce-avro.response-size-avg
+          field: partition_produce_avro_response_size_avg
+        - attr: partition.produce-avro.response-size-max
+          field: partition_produce_avro_response_size_max
+        - attr: partition.produce-json.request-byte-rate
+          field: partition_produce_json_request_byte_rate
+        - attr: partition.produce-json.request-error-rate
+          field: partition_produce_json_request_error_rate
+        - attr: partition.produce-json.request-latency-avg
+          field: partition_produce_json_request_latency_avg
+        - attr: partition.produce-json.request-latency-max
+          field: partition_produce_json_request_latency_max
+        - attr: partition.produce-json.request-rate
+          field: partition_produce_json_request_rate
+        - attr: partition.produce-json.request-size-avg
+          field: partition_produce_json_request_size_avg
+        - attr: partition.produce-json.request-size-max
+          field: partition_produce_json_request_size_max
+        - attr: partition.produce-json.response-byte-rate
+          field: partition_produce_json_response_byte_rate
+        - attr: partition.produce-json.response-rate
+          field: partition_produce_json_response_rate
+        - attr: partition.produce-json.response-size-avg
+          field: partition_produce_json_response_size_avg
+        - attr: partition.produce-json.response-size-max
+          field: partition_produce_json_response_size_max
+        - attr: partition.produce-binary.request-byte-rate
+          field: partition_produce_binary_request_byte_rate
+        - attr: partition.produce-binary.request-error-rate
+          field: partition_produce_binary_request_error_rate
+        - attr: partition.produce-binary.request-latency-avg
+          field: partition_produce_binary_request_latency_avg
+        - attr: partition.produce-binary.request-latency-max
+          field: partition_produce_binary_request_latency_max
+        - attr: partition.produce-binary.request-rate
+          field: partition_produce_binary_request_rate
+        - attr: partition.produce-binary.request-size-avg
+          field: partition_produce_binary_request_size_avg
+        - attr: partition.produce-binary.request-size-max
+          field: partition_produce_binary_request_size_max
+        - attr: partition.produce-binary.response-byte-rate
+          field: partition_produce_binary_response_byte_rate
+        - attr: partition.produce-binary.response-rate
+          field: partition_produce_binary_response_rate
+        - attr: partition.produce-binary.response-size-avg
+          field: partition_produce_binary_response_size_avg
+        - attr: partition.produce-binary.response-size-max
+          field: partition_produce_binary_response_size_max
+        - attr: partitions.list.request-byte-rate
+          field: partitions_list_request_byte_rate
+        - attr: partitions.list.request-error-rate
+          field: partitions_list_request_error_rate
+        - attr: partitions.list.request-latency-avg
+          field: partitions_list_request_latency_avg
+        - attr: partitions.list.request-latency-max
+          field: partitions_list_request_latency_max
+        - attr: partitions.list.request-rate
+          field: partitions_list_request_rate
+        - attr: partitions.list.request-size-avg
+          field: partitions_list_request_size_avg
+        - attr: partitions.list.request-size-max
+          field: partitions_list_request_size_max
+        - attr: partitions.list.response-byte-rate
+          field: partitions_list_response_byte_rate
+        - attr: partitions.list.response-rate
+          field: partitions_list_response_rate
+        - attr: partitions.list.response-size-avg
+          field: partitions_list_response_size_avg
+        - attr: partitions.list.response-size-max
+          field: partitions_list_response_size_max
+        - attr: topic.get.request-byte-rate
+          field: topic_get_request_byte_rate
+        - attr: topic.get.request-error-rate
+          field: topic_get_request_error_rate
+        - attr: topic.get.request-latency-avg
+          field: topic_get_request_latency_avg
+        - attr: topic.get.request-latency-max
+          field: topic_get_request_latency_max
+        - attr: topic.get.request-rate
+          field: topic_get_request_rate
+        - attr: topic.get.request-size-avg
+          field: topic_get_request_size_avg
+        - attr: topic.get.request-size-max
+          field: topic_get_request_size_max
+        - attr: topic.get.response-byte-rate
+          field: topic_get_response_byte_rate
+        - attr: topic.get.response-rate
+          field: topic_get_response_rate
+        - attr: topic.get.response-size-avg
+          field: topic_get_response_size_avg
+        - attr: topic.get.response-size-max
+          field: topic_get_response_size_max
+        - attr: topic.produce-avro.request-byte-rate
+          field: topic_produce_avro_request_byte_rate
+        - attr: topic.produce-avro.request-error-rate
+          field: topic_produce_avro_request_error_rate
+        - attr: topic.produce-avro.request-latency-avg
+          field: topic_produce_avro_request_latency_avg
+        - attr: topic.produce-avro.request-latency-max
+          field: topic_produce_avro_request_latency_max
+        - attr: topic.produce-avro.request-rate
+          field: topic_produce_avro_request_rate
+        - attr: topic.produce-avro.request-size-avg
+          field: topic_produce_avro_request_size_avg
+        - attr: topic.produce-avro.request-size-max
+          field: topic_produce_avro_request_size_max
+        - attr: topic.produce-avro.response-byte-rate
+          field: topic_produce_avro_response_byte_rate
+        - attr: topic.produce-avro.response-rate
+          field: topic_produce_avro_response_rate
+        - attr: topic.produce-avro.response-size-avg
+          field: topic_produce_avro_response_size_avg
+        - attr: topic.produce-avro.response-size-max
+          field: topic_produce_avro_response_size_max
+        - attr: topic.produce-binary.request-byte-rate
+          field: topic_produce_binary_request_byte_rate
+        - attr: topic.produce-binary.request-error-rate
+          field: topic_produce_binary_request_error_rate
+        - attr: topic.produce-binary.request-latency-avg
+          field: topic_produce_binary_request_latency_avg
+        - attr: topic.produce-binary.request-latency-max
+          field: topic_produce_binary_request_latency_max
+        - attr: topic.produce-binary.request-rate
+          field: topic_produce_binary_request_rate
+        - attr: topic.produce-binary.request-size-avg
+          field: topic_produce_binary_request_size_avg
+        - attr: topic.produce-binary.request-size-max
+          field: topic_produce_binary_request_size_max
+        - attr: topic.produce-binary.response-byte-rate
+          field: topic_produce_binary_response_byte_rate
+        - attr: topic.produce-binary.response-rate
+          field: topic_produce_binary_response_rate
+        - attr: topic.produce-binary.response-size-avg
+          field: topic_produce_binary_response_size_avg
+        - attr: topic.produce-binary.response-size-max
+          field: topic_produce_binary_response_size_max
+        - attr: topics.list.request-byte-rate
+          field: topics_list_request_byte_rate
+        - attr: topics.list.request-error-rate
+          field: topics_list_request_error_rate
+        - attr: topics.list.request-latency-avg
+          field: topics_list_request_latency_avg
+        - attr: topics.list.request-latency-max
+          field: topics_list_request_latency_max
+        - attr: topics.list.request-rate
+          field: topics_list_request_rate
+        - attr: topics.list.request-size-avg
+          field: topics_list_request_size_avg
+        - attr: topics.list.request-size-max
+          field: topics_list_request_size_max
+        - attr: topics.list.response-byte-rate
+          field: topics_list_response_byte_rate
+        - attr: topics.list.response-rate
+          field: topics_list_response_rate
+        - attr: topics.list.response-size-avg
+          field: topics_list_response_size_avg
+        - attr: topics.list.response-size-max
+          field: topics_list_response_size_max

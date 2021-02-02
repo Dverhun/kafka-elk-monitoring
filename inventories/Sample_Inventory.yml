@@ -1,0 +1,76 @@
+##############
+#### SBX #####
+##############
+sbx:
+  children:
+    Example_Cluster-1:
+      hosts:
+        Sbx-Example_Cluster-1-broker-1: 
+        Sbx-Example_Cluster-1-broker-2: 
+        Sbx-Example_Cluster-1-broker-3: 
+        Sbx-Example_Cluster-1-connect-1: 
+        Sbx-Example_Cluster-1-connect-2: 
+        Sbx-Example_Cluster-1-control-1: 
+        Sbx-Example_Cluster-1-zookeeper-1: 
+        Sbx-Example_Cluster-1-zookeeper-2: 
+        Sbx-Example_Cluster-1-zookeeper-3:
+      vars:
+        Kafka-Cluster-Tag: Sbx_Example_Cluster-1
+        logstash_hosts: '"Logastash_Enpoint_For_Cluster:8080"'    
+        metrics_endpoint: "Logastash_Enpoint_For_Cluster:1010"  
+
+    Example_Cluster-2:
+      hosts:
+        Sbx-Example_Cluster-2-broker-1:   
+        Sbx-Example_Cluster-2-broker-2:   
+        Sbx-Example_Cluster-2-broker-3:   
+        Sbx-Example_Cluster-2-broker-4:   
+        Sbx-Example_Cluster-2-broker-5:   
+        Sbx-Example_Cluster-2-broker-6:   
+        Sbx-Example_Cluster-2-control-1:  
+        Sbx-Example_Cluster-2-registry-1: 
+        Sbx-Example_Cluster-2-registry-2: 
+        Sbx-Example_Cluster-2-zookeeper-1:
+        Sbx-Example_Cluster-2-zookeeper-2:
+        Sbx-Example_Cluster-2-zookeeper-3:
+        Sbx-Example_Cluster-2-zookeeper-4:
+        Sbx-Example_Cluster-2-zookeeper-5:
+      vars:
+        Kafka-Cluster-Tag: Sbx_Example_Cluster-2
+        logstash_hosts: '"Logastash_Enpoint_For_Cluster:8080"'   
+        metrics_endpoint: "Logastash_Enpoint_For_Cluster:1010"  
+
+
+##############
+#### DEV #####
+##############
+dev:
+
+    Example-Cluster-3:
+      hosts:           
+        Dev-Example-Cluster-3-broker-1:        
+        Dev-Example-Cluster-3-broker-2:        
+        Dev-Example-Cluster-3-broker-3:        
+        Dev-Example-Cluster-3-broker-4:        
+        Dev-Example-Cluster-3-broker-5:        
+        Dev-Example-Cluster-3-broker-6:        
+        Dev-Example-Cluster-3-ksql-1:          
+        Dev-Example-Cluster-3-ksql-2:          
+        Dev-Example-Cluster-3-ksql-3:          
+        Dev-Example-Cluster-3-registry-1:      
+        Dev-Example-Cluster-3-registry-2:      
+        Dev-Example-Cluster-3-rest-1:          
+        Dev-Example-Cluster-3-rest-2:          
+        Dev-Example-Cluster-3-zookeeper-1:     
+        Dev-Example-Cluster-3-zookeeper-2:     
+        Dev-Example-Cluster-3-zookeeper-3:     
+        Dev-Example-Cluster-3-zookeeper-4:     
+        Dev-Example-Cluster-3-zookeeper-5:     
+        Dev-Example-Cluster-3-connect-default1:
+        Dev-Example-Cluster-3-connect-default2:
+      vars:
+        Kafka-Cluster-Tag: Sbx_Example_Cluster-2
+        logstash_hosts: '"Logastash_Enpoint_For_Cluster:8080"' 
+        metrics_endpoint: "Logastash_Enpoint_For_Cluster:1010"  
+
+        

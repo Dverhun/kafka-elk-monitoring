@@ -1,0 +1,26 @@
+filebeat.inputs:
+
+- type: log
+  enabled: true
+  close_removed: true
+  close_timeout: 5m
+  paths:
+    - /var/log/kafka/*.log
+    - /var/log/confluent/**/*.log
+
+processors:
+- add_tags:
+    tags: [ "{{ Kafka-Cluster-Tag }}" ]
+    target: "{{ Kafka-Cluster-Tag }}"
+- add_labels:
+    labels:
+      environment: "{{ environment }"
+      application: "kafka"
+      version: "5.4.1"
+
+
+## Output ##
+output:
+  logstash:
+    hosts: [ {{ logstash_hosts }} ]
+    bulk_max_size: 1024

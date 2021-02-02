@@ -1,0 +1,323 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['kafka-broker']}}"]
+  namespace: "kafka-broker"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+###############################################  
+############  Kafka Server :: Java ############
+###############################################
+    - mbean: 'java.lang:type=Memory'
+      attributes:
+        - attr: HeapMemoryUsage
+          field: HeapMemoryUsage
+########################################################################  
+############  Kafka Server :: Topic Metrics :: Bytes In/Out ############
+########################################################################
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,topic=*,name=MessagesInPerSec' 
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.MessagesInPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=BytesInPerSec' 
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.BytesInPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=BytesOutPerSec' 
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.BytesOutPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,topic=*,name=BytesInPerSec' 
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.BytesInPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,topic=*,name=BytesOutPerSec' 
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.BytesOutPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=BytesRejectedPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.BytesRejectedPerSec.OneMinuteRate
+#################################################################################  
+############ Kafka Server :: Topic Metrics :: Fetch/Produce Requests ############
+################################################################################# 
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=TotalProduceRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.TotalProduceRequestsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=TotalFetchRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.TotalFetchRequestsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,topic=*,name=TotalProduceRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.TotalProduceRequestsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,topic=*,name=TotalFetchRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.topic.TotalFetchRequestsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=FailedProduceRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.FailedProduceRequestsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=BrokerTopicMetrics,name=FailedFetchRequestsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.BrokerTopicMetrics.FailedFetchRequestsPerSec.OneMinuteRate
+#############################################################################
+######### Kafka Server :: Replica Manager :: Partitions Health ##############
+#############################################################################
+    - mbean: 'kafka.server:type=ReplicaManager,name=PartitionCount'
+      attributes:
+        - attr: Value
+          field: kafka.server.ReplicaManager.PartitionCount.Value
+    - mbean: 'kafka.server:type=ReplicaManager,name=UnderReplicatedPartitions'
+      attributes:
+        - attr: Value
+          field: kafka.server.ReplicaManager.UnderReplicatedPartitions.Value
+    - mbean: 'kafka.server:type=ReplicaManager,name=IsrExpandsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.ReplicaManager.IsrExpandsPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=ReplicaManager,name=IsrShrinksPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.server.ReplicaManager.IsrShrinksPerSec.OneMinuteRate
+    - mbean: 'kafka.server:type=ReplicaManager,name=LeaderCount'
+      attributes:
+        - attr: Value
+          field: kafka.server.ReplicaManager.LeaderCount.Value
+    - mbean: 'kafka.server:type=ReplicaFetcherManager,clientId=Replica,name=MaxLag'
+      attributes:
+        - attr: Value
+          field: kafka.server.ReplicaFetcherManager.Replica.MaxLag.Value
+    - mbean: 'kafka.server:type=ReplicaManager,name=OfflineReplicaCount'
+      attributes:
+        - attr: Value
+          field: kafka.server.ReplicaManager.OfflineReplicaCount.Value
+#########################################################################
+############## Kafka Network :: Request Metrics Produce #################
+#########################################################################
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=TotalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: 'kafka.network.RequestMetrics.Produce.TotalTimeMs.99thPercentile'
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=RequestQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.Produce.RequestQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=ResponseQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.Produce.ResponseQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=LocalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.Produce.LocalTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=RemoteTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.Produce.RemoteTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=Produce,name=RequestsPerSec,version=*'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.network.RequestMetrics.Produce.RequestsPerSec.OneMinuteRate
+###############################################################################
+############## Kafka Network :: Request Metrics FetchConsumer #################
+###############################################################################
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=TotalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchConsumer.TotalTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=RequestQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchConsumer.RequestQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=ResponseQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchConsumer.ResponseQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=LocalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchConsumer.LocalTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=RemoteTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchConsumer.RemoteTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchConsumer,name=RequestsPerSec,version=*'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.network.RequestMetrics.FetchConsumer.RequestsPerSec.OneMinuteRate
+###############################################################################
+############## Kafka Network :: Request Metrics FetchFollower #################
+###############################################################################
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=TotalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchFollower.TotalTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=RequestQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchFollower.RequestQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=ResponseQueueTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchFollower.ResponseQueueTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=LocalTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchFollower.LocalTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=RemoteTimeMs'
+      attributes:
+        - attr: 99thPercentile
+          field: kafka.network.RequestMetrics.FetchFollower.RemoteTimeMs.99thPercentile
+    - mbean: 'kafka.network:type=RequestMetrics,request=FetchFollower,name=RequestsPerSec,version=*'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.network.RequestMetrics.FetchFollower.RequestsPerSec.OneMinuteRate
+#####################################################################
+############## Kafka Controller :: Kafka Controller #################
+#####################################################################
+    - mbean: 'kafka.controller:type=KafkaController,name=OfflinePartitionsCount'
+      attributes:
+        - attr: Value
+          field: kafka.controller.KafkaController.OfflinePartitionsCount.Value
+    - mbean: 'kafka.controller:type=KafkaController,name=ActiveControllerCount'
+      attributes:
+        - attr: Value
+          field:  kafka.controller.KafkaController.ActiveControllerCount.Value
+#####################################################################
+############## Kafka Controller :: Controller Stats #################
+#####################################################################
+    - mbean: 'kafka.controller:type=ControllerStats,name=ControllerChangeRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.ControllerChangeRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=ControllerChangeRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.ControllerChangeRateAndTimeMs.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=ControllerShutdownRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.ControllerShutdownRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=ControllerShutdownRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.ControllerShutdownRateAndTimeMs.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=LeaderElectionRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.LeaderElectionRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=LeaderElectionRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.LeaderElectionRateAndTimeMs.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=UncleanLeaderElectionsPerSec'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.UncleanLeaderElectionsPerSec.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=UncleanLeaderElectionsPerSec'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.UncleanLeaderElectionsPerSec.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=PartitionReassignmentRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.PartitionReassignmentRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=PartitionReassignmentRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.PartitionReassignmentRateAndTimeMs.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=TopicChangeRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.TopicChangeRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=TopicChangeRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.TopicChangeRateAndTimeMs.Count
+    - mbean: 'kafka.controller:type=ControllerStats,name=TopicDeletionRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.controller.ControllerStats.TopicDeletionRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.controller:type=ControllerStats,name=TopicDeletionRateAndTimeMs'
+      attributes:
+        - attr: Count
+          field: kafka.controller.ControllerStats.TopicDeletionRateAndTimeMs.Count
+################################################################################################
+############## Kafka Network :: Request Channel :: Request/Response Queue Size #################
+################################################################################################
+    - mbean: 'kafka.network:type=RequestChannel,name=RequestQueueSize'
+      attributes:
+        - attr: Value
+          field: kafka.network.RequestChannel.RequestQueueSize.Value
+    - mbean: 'kafka.network:type=RequestChannel,name=ResponseQueueSize'
+      attributes:
+        - attr: Value
+          field: kafka.network.RequestChannel.ResponseQueueSize.Value
+########################################################################
+###################### Kafka Server :: Purgatory #######################
+########################################################################
+    - mbean: 'kafka.server:type=DelayedOperationPurgatory,delayedOperation=Fetch,name=PurgatorySize'
+      attributes:
+        - attr: Value
+          field: kafka.server.DelayedOperationPurgatory.Fetch.PurgatorySize.Value
+    - mbean: 'kafka.server:type=DelayedOperationPurgatory,delayedOperation=Produce,name=PurgatorySize'
+      attributes:
+        - attr: Value
+          field: kafka.server.DelayedOperationPurgatory.Produce.PurgatorySize.Value
+    - mbean: 'kafka.server:type=DelayedOperationPurgatory,delayedOperation=Fetch,name=NumDelayedOperations'
+      attributes:
+        - attr: Value
+          field: kafka.server.DelayedOperationPurgatory.Fetch.NumDelayedOperations.Value
+    - mbean: 'kafka.server:type=DelayedOperationPurgatory,delayedOperation=Produce,name=NumDelayedOperations'
+      attributes:
+        - attr: Value
+          field: kafka.server.DelayedOperationPurgatory.Produce.NumDelayedOperations.Value
+##############################
+######### Kafka Log ##########
+##############################
+    - mbean: 'kafka.log:type=Log,topic=*,partition=*,name=Size'
+      attributes:
+        - attr: Value
+          field: kafka.log.Log.Value
+    - mbean: 'kafka.log:type=Log,topic=*,partition=*,name=NumLogSegments'
+      attributes:
+        - attr: Value
+          field: kafka.log.Log.NumLogSegments.Value
+    - mbean: 'kafka.log:type=Log,topic=*,partition=*,name=LogStartOffset'
+      attributes:
+        - attr: Value
+          field: kafka.log.Log.LogStartOffset.Value
+    - mbean: 'kafka.log:type=Log,topic=*,partition=*,name=LogEndOffset'
+      attributes:
+        - attr: Value
+          field: kafka.log.Log.LogEndOffset.Value
+    - mbean: 'kafka.log:type=LogFlushStats,name=LogFlushRateAndTimeMs'
+      attributes:
+        - attr: OneMinuteRate
+          field: kafka.log.LogFlushStats.LogFlushRateAndTimeMs.OneMinuteRate
+    - mbean: 'kafka.log:type=LogCleaner,name=*'
+      attributes:
+        - attr: Value
+          field: kafka.log.LogCleaner.Value
+    - mbean: 'kafka.log:type=LogManager,logDirectory=*,name=*'
+      attributes:
+        - attr: Value
+          field: kafka.log.LogManager.Value
+    - mbean: 'kafka.log:type=LogCleanerManager,logDirectory=*,name=*'
+      attributes:
+        - attr: Value
+          field: kafka.log.LogCleanerManager.Value
+    - mbean: 'kafka.log:type=LogCleanerManager,name=*'
+      attributes:
+        - attr: Value
+          field: kafka.log.LogCleanerManager.Value

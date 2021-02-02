@@ -1,0 +1,22 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+
+
+tags: ["kafka", "{{Kafka-Cluster-Tag}}"]
+
+fields_under_root: true
+fields:
+  kafka_cluster_name: {{Kafka-Cluster-Tag}}
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+
+output.logstash:
+  hosts: ["{{metrics_endpoint}}"]

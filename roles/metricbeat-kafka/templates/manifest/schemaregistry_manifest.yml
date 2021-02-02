@@ -1,0 +1,202 @@
+###################################################################
+##################   Managed By Ansible  ##########################
+################## Author: dima@vergun.in.ua ######################
+###################################################################
+- module: jolokia
+  metricsets: ["jmx"]
+  period: 180s
+  hosts: ["localhost:{{jolokia_ports['kafka-schemaregistry']}}"]
+  namespace: "kafka-schemaregistry"
+  path: "/jolokia/?ignoreErrors=true&canonicalNaming=true"
+  jmx.mappings:
+    - mbean: 'kafka.schema.registry:type=jetty-metrics'
+      attributes:
+         - attr: connections-active
+           field: connections_active
+         - attr: connections-opened-rate
+           field: connections_opened_rate
+         - attr: connections-closed-rate
+           field: connections_closed_rate
+    - mbean: 'kafka.schema.registry:type=master-slave-role'
+      attributes:
+        - attr: master-slave-role
+          field: master_slave_role
+    - mbean: 'kafka.schema.registry:type=jersey-metrics'
+      attributes:
+        - attr: compatibility.subjects.versions.verify.request-byte-rate
+          field: compatibility_subjects_versions_verify_request_byte_rate
+        - attr: compatibility.subjects.versions.verify.request-error-rate
+          field: compatibility_subjects_versions_verify_request_error_rate
+        - attr: compatibility.subjects.versions.verify.request-latency-avg
+          field: compatibility_subjects_versions_verify_request_latency_avg
+        - attr: compatibility.subjects.versions.verify.request-latency-max
+          field: compatibility_subjects_versions_verify_request_latency_max
+        - attr: compatibility.subjects.versions.verify.request-rate
+          field: compatibility_subjects_versions_verify_request_rate
+        - attr: compatibility.subjects.versions.verify.request-size-avg
+          field: compatibility_subjects_versions_verify_request_size_avg
+        - attr: compatibility.subjects.versions.verify.request-size-max
+          field: compatibility_subjects_versions_verify_request_size_max
+        - attr: compatibility.subjects.versions.verify.response-byte-rate
+          field: compatibility_subjects_versions_verify_response_byte_rate
+        - attr: compatibility.subjects.versions.verify.response-rate
+          field: compatibility_subjects_versions_verify_response_rate
+        - attr: compatibility.subjects.versions.verify.response-size-avg
+          field: compatibility_subjects_versions_verify_response_size_avg
+        - attr: compatibility.subjects.versions.verify.response-size-max
+          field: compatibility_subjects_versions_verify_response_size_max
+        - attr: schemas.ids.get-schema.request-byte-rate
+          field: schemas_ids_get_schema_request_byte_rate
+        - attr: schemas.ids.get-schema.request-error-rate
+          field: schemas_ids_get_schema_request_error_rate
+        - attr: schemas.ids.get-schema.request-latency-avg
+          field: schemas_ids_get_schema_request_latency_avg
+        - attr: schemas.ids.get-schema.request-latency-max
+          field: schemas_ids_get_schema_request_latency_max
+        - attr: schemas.ids.get-schema.request-rate
+          field: schemas_ids_get_schema_request_rate
+        - attr: schemas.ids.get-schema.request-size-avg
+          field: schemas_ids_get_schema_request_size_avg
+        - attr: schemas.ids.get-schema.request-size-max
+          field: schemas_ids_get_schema_request_size_max
+        - attr: schemas.ids.get-schema.response-byte-rate
+          field: schemas_ids_get_schema_response_byte_rate
+        - attr: schemas.ids.get-schema.response-rate
+          field: schemas_ids_get_schema_response_rate
+        - attr: schemas.ids.get-schema.response-size-avg
+          field: schemas_ids_get_schema_response_size_avg
+        - attr: schemas.ids.get-schema.response-size-max
+          field: schemas_ids_get_schema_response_size_max
+        - attr: subjects.get-schema.request-byte-rate
+          field: subjects_get_schema_request_byte_rate
+        - attr: subjects.get-schema.request-error-rate
+          field: subjects_get_schema_request_error_rate
+        - attr: subjects.get-schema.request-latency-avg
+          field: subjects_get_schema_request_latency_avg
+        - attr: subjects.get-schema.request-latency-max
+          field: subjects_get_schema_request_latency_max
+        - attr: subjects.get-schema.request-rate
+          field: subjects_get_schema_request_rate
+        - attr: subjects.get-schema.request-size-avg
+          field: subjects_get_schema_request_size_avg
+        - attr: subjects.get-schema.request-size-max
+          field: subjects_get_schema_request_size_max
+        - attr: subjects.get-schema.response-byte-rate
+          field: subjects_get_schema_response_byte_rate
+        - attr: subjects.get-schema.response-rate
+          field: subjects_get_schema_response_rate
+        - attr: subjects.get-schema.response-size-avg
+          field: subjects_get_schema_response_size_avg
+        - attr: subjects.get-schema.response-size-max
+          field: subjects_get_schema_response_size_max
+        - attr: subjects.list.request-byte-rate
+          field: subjects_list_request_byte_rate
+        - attr: subjects.list.request-error-rate
+          field: subjects_list_request_error_rate
+        - attr: subjects.list.request-latency-avg
+          field: subjects_list_request_latency_avg
+        - attr: subjects.list.request-latency-max
+          field: subjects_list_request_latency_max
+        - attr: subjects.list.request-rate
+          field: subjects_list_request_rate
+        - attr: subjects.list.request-size-avg
+          field: subjects_list_request_size_avg
+        - attr: subjects.list.request-size-max
+          field: subjects_list_request_size_max
+        - attr: subjects.list.response-byte-rate
+          field: subjects_list_response_byte_rate
+        - attr: subjects.list.response-rate
+          field: subjects_list_response_rate
+        - attr: subjects.list.response-size-avg
+          field: subjects_list_response_size_avg
+        - attr: subjects.list.response-size-max
+          field: subjects_list_response_size_max
+        - attr: subjects.versions.get-schema.request-byte-rate
+          field: subjects_versions_get_schema_request_byte_rate
+        - attr: subjects.versions.get-schema.request-error-rate
+          field: subjects_versions_get_schema_request_error_rate
+        - attr: subjects.versions.get-schema.request-latency-avg
+          field: subjects_versions_get_schema_request_latency_avg
+        - attr: subjects.versions.get-schema.request-latency-max
+          field: subjects_versions_get_schema_request_latency_max
+        - attr: subjects.versions.get-schema.request-rate
+          field: subjects_versions_get_schema_request_rate
+        - attr: subjects.versions.get-schema.request-size-avg
+          field: subjects_versions_get_schema_request_size_avg
+        - attr: subjects.versions.get-schema.request-size-max
+          field: subjects_versions_get_schema_request_size_max
+        - attr: subjects.versions.get-schema.response-byte-rate
+          field: subjects_versions_get_schema_response_byte_rate
+        - attr: subjects.versions.get-schema.response-rate
+          field: subjects_versions_get_schema_response_rate
+        - attr: subjects.versions.get-schema.response-size-avg
+          field: subjects_versions_get_schema_response_size_avg
+        - attr: subjects.versions.get-schema.response-size-max
+          field: subjects_versions_get_schema_response_size_max
+        - attr: subjects.versions.get-schema.only.request-byte-rate
+          field: subjects_versions_get_schema_only_request_byte_rate
+        - attr: subjects.versions.get-schema.only.request-error-rate
+          field: subjects_versions_get_schema_only_request_error_rate
+        - attr: subjects.versions.get-schema.only.request-latency-avg
+          field: subjects_versions_get_schema_only_request_latency_avg
+        - attr: subjects.versions.get-schema.only.request-latency-max
+          field: subjects_versions_get_schema_only_request_latency_max
+        - attr: subjects.versions.get-schema.only.request-rate
+          field: subjects_versions_get_schema_only_request_rate
+        - attr: subjects.versions.get-schema.only.request-size-avg
+          field: subjects_versions_get_schema_only_request_size_avg
+        - attr: subjects.versions.get-schema.only.request-size-max
+          field: subjects_versions_get_schema_only_request_size_max
+        - attr: subjects.versions.get-schema.only.response-byte-rate
+          field: subjects_versions_get_schema_only_response_byte_rate
+        - attr: subjects.versions.get-schema.only.response-rate
+          field: subjects_versions_get_schema_only_response_rate
+        - attr: subjects.versions.get-schema.only.response-size-avg
+          field: subjects_versions_get_schema_only_response_size_avg
+        - attr: subjects.versions.get-schema.only.response-size-max
+          field: subjects_versions_get_schema_only_response_size_max
+        - attr: subjects.versions.list.request-byte-rate
+          field: subjects_versions_list_request_byte_rate
+        - attr: subjects.versions.list.request-error-rate
+          field: subjects_versions_list_request_error_rate
+        - attr: subjects.versions.list.request-latency-avg
+          field: subjects_versions_list_request_latency_avg
+        - attr: subjects.versions.list.request-latency-max
+          field: subjects_versions_list_request_latency_max
+        - attr: subjects.versions.list.request-rate
+          field: subjects_versions_list_request_rate
+        - attr: subjects.versions.list.request-size-avg
+          field: subjects_versions_list_request_size_avg
+        - attr: subjects.versions.list.request-size-max
+          field: subjects_versions_list_request_size_max
+        - attr: subjects.versions.list.response-byte-rate
+          field: subjects_versions_list_response_byte_rate
+        - attr: subjects.versions.list.response-rate
+          field: subjects_versions_list_response_rate
+        - attr: subjects.versions.list.response-size-avg
+          field: subjects_versions_list_response_size_avg
+        - attr: subjects.versions.list.response-size-max
+          field: subjects_versions_list_response_size_max
+        - attr: subjects.versions.register.request-byte-rate
+          field: subjects_versions_register_request_byte_rate
+        - attr: subjects.versions.register.request-error-rate
+          field: subjects_versions_register_request_error_rate
+        - attr: subjects.versions.register.request-latency-avg
+          field: subjects_versions_register_request_latency_avg
+        - attr: subjects.versions.register.request-latency-max
+          field: subjects_versions_register_request_latency_max
+        - attr: subjects.versions.register.request-rate
+          field: subjects_versions_register_request_rate
+        - attr: subjects.versions.register.request-size-avg
+          field: subjects_versions_register_request_size_avg
+        - attr: subjects.versions.register.request-size-max
+          field: subjects_versions_register_request_size_max
+        - attr: subjects.versions.register.response-byte-rate
+          field: subjects_versions_register_response_byte_rate
+        - attr: subjects.versions.register.response-rate
+          field: subjects_versions_register_response_rate
+        - attr: subjects.versions.register.response-size-avg
+          field: subjects_versions_register_response_size_avg
+        - attr: subjects.versions.register.response-size-max
+          field: subjects_versions_register_response_size_max
+          
